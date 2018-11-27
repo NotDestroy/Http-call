@@ -1,0 +1,7 @@
+{
+
+    "require": {
+        "php": ">=5.2",
+        "rmccue/requests": "v1.7.0"
+    }
+}
