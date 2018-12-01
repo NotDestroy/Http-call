@@ -3,5 +3,11 @@
     "require": {
         "php": ">=5.2",
         "rmccue/requests": "v1.7.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "HttpCall\\Project\\": "src"
+        }
     }
 }
