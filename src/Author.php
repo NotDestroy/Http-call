@@ -13,7 +13,7 @@ class Author
         if ($limitOfAuthors && $limitOfAuthors > 0) {
             $this->limit = $limitOfAuthors;
         }
-        //todo throw ex
+        throw new \HttpCall\Project\PhpErorr\WrongLimitSpecified('Ошибка указан неверный лимит');
     }
 
     /**

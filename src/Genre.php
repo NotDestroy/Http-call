@@ -7,7 +7,6 @@ class Genre
     private $bodyContent;
     private $startPointPathGenre = 0;
     private $url = 'https://www.litmir.me';
-    private $limit = 0;
 
     /**
      * @param $body
