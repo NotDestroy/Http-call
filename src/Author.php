@@ -12,8 +12,20 @@ class Author
         $this->bodyContent = $body;
         if ($limitOfAuthors && $limitOfAuthors > 0) {
             $this->limit = $limitOfAuthors;
+            return;
         }
-        throw new \HttpCall\Project\PhpErorr\WrongLimitSpecified('Ошибка указан неверный лимит');
+        throw new \HttpCall\Project\Exceptions\WrongLimitSpecified('Ошибка указан неверный лимит');
+    }
+
+    private function isExsist($arr, $value)
+    {
+        foreach ($arr as $oneElement) {
+            if ($oneElement === $value) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -32,8 +44,11 @@ class Author
             $endPoint    = strpos($this->bodyContent, '"><a href="', $startSection);
             $lengthTitle = $endPoint - $startSection;
             $section     = substr($this->bodyContent, $startSection, $lengthTitle);
-            $authors[]   = trim($section, 'class="desc2"> <meta itemprop="name" content="');
-            $startPoint  = &$endPoint;
+            if ($this->isExsist($authors, trim($section, 'class="desc2"> <meta itemprop="name" content="'))) {
+                continue;
+            }
+            $authors[]  = trim($section, 'class="desc2"> <meta itemprop="name" content="');
+            $startPoint = &$endPoint;
             $indexLimit++;
         }
 

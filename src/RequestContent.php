@@ -18,13 +18,13 @@ class RequestContent
 
     /**
      * @return bool
-     * @throws \HttpCall\Project\PhpErorr\NotAppropriateCode
+     * @throws \HttpCall\Project\Exceptions\NotAppropriateCode
      */
     private function isAccept()
     {
 
         if ($this->getContentBody()->status_code !== 200) {
-            throw new \HttpCall\Project\PhpErorr\NotAppropriateCode();
+            throw new \HttpCall\Project\Exceptions\NotAppropriateCode();
         }
 
         return true;

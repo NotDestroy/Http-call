@@ -6,7 +6,7 @@ class Genre
 {
     private $bodyContent;
     private $startPointPathGenre = 0;
-    private $url = 'https://www.litmir.me';
+    private $url                 = 'https://www.litmir.me';
 
     /**
      * @param $body
@@ -27,7 +27,7 @@ class Genre
             $endPathSextion    = strpos($this->bodyContent, '"><p', $startPathSextion);
             $lengthPathSextion = $endPathSextion - $startPathSextion;
             $section           = substr($this->bodyContent, $startPathSextion, $lengthPathSextion);
-            $path = $this->url . trim($section, 'href="');
+            $path              = $this->url . trim($section, 'href="');
             $startPoint        = $endPathSextion;
         }
 
@@ -46,9 +46,12 @@ class Genre
             $endPoint    = strpos($this->bodyContent, '</p>', $startSection);
             $lengthTitle = $endPoint - $startSection;
             $section     = substr($this->bodyContent, $startSection, $lengthTitle);
-                $genres[trim($section, 'genre_title">')] = $this->getPathGenre($this->startPointPathGenre);
-                $startPoint = &$endPoint;
-                $indexLimit++;
+            if (array_key_exists(trim($section, 'genre_title">'), $genres)) {
+                continue;
+            }
+            $genres[trim($section, 'genre_title">')] = $this->getPathGenre($this->startPointPathGenre);
+            $startPoint                              = &$endPoint;
+            $indexLimit++;
         }
 
         return $genres;

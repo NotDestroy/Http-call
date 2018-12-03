@@ -1,6 +1,6 @@
 <?php
 
-namespace HttpCall\Project\PhpErorr;
+namespace HttpCall\Project\Exceptions;
 
 class WrongLimitSpecified extends \Exception
 {

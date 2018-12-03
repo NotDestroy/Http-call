@@ -1,9 +1,6 @@
 <?php
 
-include_once '../vendor/autoload.php';
-
-$e = new \HttpCall\Project\PhpErorr\UncaughtExceptions();
-set_exception_handler([$e, 'exceptionHandler']);
+include_once 'vendor/autoload.php';
 
 $path    = 'D:\OpenServer\domains\Http-call\archive';
 $obBody1 = new \HttpCall\Project\RequestContent('https://www.litmir.me/all_genre');
@@ -15,10 +12,10 @@ foreach ($arrGenre as $key => $value) {
     $obBody2 = new \HttpCall\Project\RequestContent($value);
 
     try {
-        $obAuthor = new \HttpCall\Project\Author($obBody2->getBody(), -1);
+        $obAuthor = new \HttpCall\Project\Author($obBody2->getBody(), 3);
     } catch
-    (\HttpCall\Project\PhpErorr\WrongLimitSpecified $e) {
-        return false;
+    (\HttpCall\Project\Exceptions\WrongLimitSpecified $e) {
+        exit ($e->getMessage());
     }
     $obPutContent = new \HttpCall\Project\PutContent();
     $obPutContent->saveData($path, $key, $obAuthor->getAuthor());
