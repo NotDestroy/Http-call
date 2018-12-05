@@ -49,7 +49,8 @@ class Genre
             if (array_key_exists(trim($section, 'genre_title">'), $genres)) {
                 continue;
             }
-            $genres[trim($section, 'genre_title">')] = $this->getPathGenre($this->startPointPathGenre);
+            $converData = iconv('UTF-8', 'windows-1251', trim($section, 'genre_title">'));
+            $genres[$converData] = $this->getPathGenre($this->startPointPathGenre);
             $startPoint                              = &$endPoint;
             $indexLimit++;
         }
