@@ -12,7 +12,7 @@ foreach ($arrGenre as $key => $value) {
     $obBody2 = new \HttpCall\Project\RequestContent($value);
 
     try {
-        $obAuthor = new \HttpCall\Project\Author('class="desc2"> <meta itemprop="name" content="" Sco""><a href="/a/?id=101645">"Sco"</a></span></div><div class="desc_box">', 3);
+        $obAuthor = new \HttpCall\Project\Author($obBody2->getBody(), 3);
     } catch
     (\HttpCall\Project\Exceptions\WrongLimitSpecified $e) {
         exit ($e->getMessage());

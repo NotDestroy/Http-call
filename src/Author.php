@@ -48,11 +48,7 @@ class Author
             if ($this->isExsist($authors, trim($section, 'class="desc2"> <meta itemprop="name" content="'))) {
                 continue;
             }
-            $start1  = strpos($section, 'content="');
-            $end1 = strpos($section, '"><a href="');
-            $length1 = $end1 - $start1;
-            $section1 = substr($section, $start1, $length1);
-            //$authors[]  = trim($section, 'class="desc2"> <meta itemprop="name" content="');
+            $authors[]  = trim($section, 'class="desc2"> <meta itemprop="name" content="');
             $startPoint = &$endPoint;
             $indexLimit++;
         }
